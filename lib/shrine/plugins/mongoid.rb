@@ -92,7 +92,14 @@ class Shrine
         # Saves changes to the model instance, raising exception on validation
         # errors. Used by the _persistence plugin.
         def mongoid_persist
-          record.save(validate: false)
+          # FIXME: именно это дополнительно сохранение перезаписывает image_data
+          # но минус такого решения что надо в жобе вызывать теперь
+          #    record.save!
+          # явно
+          # эти изменения можно потом отправить в наш гем(в официальный врят ли примут)
+          # ну или придумать что то получше
+
+          # record.save(validate: false)
         end
 
         # Yields the reloaded record. Used by the _persistence plugin.
